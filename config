@@ -102,6 +102,8 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+m focus parent
 
+# Locks the screen
+bindsym $mod+Shift+control+e exec i3lock
 # focus the child container
 #bindsym $mod+shift+m focus child
 
@@ -119,7 +121,7 @@ bindsym $mod+Shift+control+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+control+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+control+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+control+y exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 focus_follows_mouse no
 # resize window (you can also use the mouse for that)
         # These bindings trigger as soon as you enter the resize mode
@@ -187,8 +189,8 @@ bar {
 # purple gruvbox
 # class                 border|backgr|text|indicator|child_border
 client.focused          $purple $purple $darkgray $red $purple
-client.focused_inactive $yellow $darkgray $yellow $red $yellow
-client.unfocused        $yellow $darkgray $yellow $red $yellow
+client.focused_inactive $yellow $darkgray $yellow $yellow $yellow
+client.unfocused        $yellow $darkgray $yellow $yellow $yellow
 client.urgent           $red $red $white $red $red
 
 # blue gruvbox
