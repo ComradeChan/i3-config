@@ -4,11 +4,12 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
+#Sets Wallpaper
+exec feh --bg-fill ~/Pictures/Wallpapers/emilia\ fanart.jpg 
 
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
-
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -18,7 +19,7 @@ font pango:monospace 8
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
-exec dunst
+exec --no-startup-id dunst
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
@@ -49,6 +50,9 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 bindsym $mod+r exec --no-startup-id dmenu_run
 bindsym $mod+shift+p exec passmenu
+bindsym $mod+control+space exec "maim -i $(xdotool getactivewindow) ~/Pictures/screenshots/$(date +%T_%F).png | xclip -selection clipboard -t image/png"
+bindsym $mod+control+c exec flameshot gui
+bindsym $mod+control+v exec textsnatcher
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -87,6 +91,7 @@ bindsym $mod+p split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+l fullscreen toggle
+bindsym $mod+f bar mode toggle ; gaps outer current toggle 5; gaps  inner current toggle 2
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+j layout stacking
@@ -109,7 +114,11 @@ bindsym $mod+Shift+control+e exec i3lock
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-
+#
+#Custom per window config
+for_window [instance=burrito.x86_64] sticky enable
+for_window [instance=burrito.x86_64] floating enable
+for_window [title="Origin"] floating enable
 # switch to workspace
 bindsym $mod+x exec i3-input -l2 -F 'workspace %s'
 
@@ -140,17 +149,20 @@ focus_follows_mouse no
         #bindsym Down resize grow height 10 px or 10 ppt
         #bindsym Up resize shrink height 10 px or 10 ppt
         #bindsym Right resize grow width 10 px or 10 ppt
+bindsym $mod+control+r exec xrandr --output HDMI-A-0 --rotate right
+bindsym $mod+shift+r exec xrandr --output HDMI-A-0 --rotate normal
 
 #######
 #THEME#
 #######
 #removes top bar
-new_window 1pixel
 #gaps settings
-gaps inner 1
-gaps outer 3
+
+gaps inner 2
+gaps outer 5
 default_border pixel 2
-smart_gaps on
+#smart_gaps on
+smart_borders on
 # set primary gruvbox colorscheme colors
 set $bg #282828
 set $red #cc241d
@@ -188,10 +200,10 @@ bar {
 
 # purple gruvbox
 # class                 border|backgr|text|indicator|child_border
-client.focused          $purple $purple $darkgray $red $purple
+client.focused          $purple $purple $darkgray $purple $purple
 client.focused_inactive $yellow $darkgray $yellow $yellow $yellow
 client.unfocused        $yellow $darkgray $yellow $yellow $yellow
-client.urgent           $red $red $white $red $red
+client.urgent           $red $red $gray $red $red
 
 # blue gruvbox
 # class                 border|backgr|text|indicator|child_border
