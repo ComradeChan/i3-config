@@ -30,7 +30,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
-
+exec --no-startup-id parcellite
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -92,7 +92,7 @@ bindsym $mod+p split v
 # enter fullscreen mode for the focused container
 bindsym $mod+l fullscreen toggle
 bindsym $mod+f bar mode toggle ; gaps outer current toggle 5; gaps  inner current toggle 2
-
+bindsym $mod+shift+f gaps outer current toggle 5; gaps inner current toggle 2
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+j layout stacking
 bindsym $mod+v layout tabbed
@@ -118,7 +118,7 @@ bindsym $mod+Shift+control+e exec i3lock
 #Custom per window config
 for_window [instance=burrito.x86_64] sticky enable
 for_window [instance=burrito.x86_64] floating enable
-for_window [title="Origin"] floating enable
+for_window [title="Origin" class="steam_app_1182480"] floating enable
 # switch to workspace
 bindsym $mod+x exec i3-input -l2 -F 'workspace %s'
 
