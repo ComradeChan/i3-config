@@ -118,7 +118,7 @@ bindsym $mod+Shift+control+e exec i3lock
 #Custom per window config
 for_window [instance=burrito.x86_64] sticky enable
 for_window [instance=burrito.x86_64] floating enable
-for_window [title="Origin" class="steam_app_1182480"] floating enable
+for_window [title="Origin" class="steam_app_"] floating enable
 # switch to workspace
 bindsym $mod+x exec i3-input -l2 -F 'workspace %s'
 
