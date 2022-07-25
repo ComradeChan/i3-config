@@ -60,7 +60,25 @@ bindsym $mod+control+v exec textsnatcher
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+# Program runner testing
+set $mode_launcher Launch: [f]irefox [e]macs
+bindsym $mod+mod1+a mode "$mode_launcher"
+mode "$mode_launcher" {
+    bindsym f exec firefox
+    bindsym e exec emacs
+    bindsym * mode "default"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
 
+set $google_it Search: [p]aste url to browser [c]lipboard search [s]earch
+bindsym $mod+mod1+g mode "$google_it"
+mode "$google_it" { #group of bindings that let you google stuff easily and interact with your browser and stuff
+bindsym p exec "xdg-open $(xsel -o)"
+bindsym c exec "~/.config/i3/bin/open_browser_search.sh"
+bindsym s exec "~/.config/i3/bin/open_browser_text.sh"
+bindsym Escape mode "default"
+}
 # change focus
 bindsym $mod+a focus left
 bindsym $mod+e focus down
